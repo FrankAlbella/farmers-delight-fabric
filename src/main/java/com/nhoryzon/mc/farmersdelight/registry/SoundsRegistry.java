@@ -33,7 +33,7 @@ public enum SoundsRegistry {
 
     SoundsRegistry(String pathName) {
         this.pathName = pathName;
-        this.soundEvent = new SoundEvent(new Identifier(FarmersDelightMod.MOD_ID, this.pathName));
+        this.soundEvent = SoundEvent.of(new Identifier(FarmersDelightMod.MOD_ID, this.pathName));
     }
 
     public static void registerAll() {
