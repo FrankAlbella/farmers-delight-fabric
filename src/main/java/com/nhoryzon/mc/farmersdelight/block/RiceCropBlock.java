@@ -55,7 +55,7 @@ public class RiceCropBlock extends PlantBlock implements Fertilizable, FluidFill
     }
 
     @Override
-    public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state, boolean isClient) {
         BlockState upperState = world.getBlockState(pos.up());
         if (upperState.getBlock() instanceof RiceUpperCropBlock riceUpperCropBlock) {
             return !riceUpperCropBlock.isMature(upperState);
