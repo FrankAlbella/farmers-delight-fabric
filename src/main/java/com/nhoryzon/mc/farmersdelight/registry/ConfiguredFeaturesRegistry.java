@@ -2,12 +2,13 @@ package com.nhoryzon.mc.farmersdelight.registry;
 
 import com.nhoryzon.mc.farmersdelight.FarmersDelightMod;
 import net.minecraft.block.Block;
-import net.minecraft.tag.BlockTags;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.registry.BuiltinRegistries;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
@@ -96,13 +97,13 @@ public enum ConfiguredFeaturesRegistry {
         for (ConfiguredFeaturesRegistry value : values()) {
             Identifier configId = new Identifier(FarmersDelightMod.MOD_ID, value.configPathName);
             value.configuredFeature = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, configId, value.featureConfigSupplier.get());
-            value.configuredFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, configId);
+            value.configuredFeatureRegistryKey = RegistryKey.of(Registries.CONFIGURED_FEATURE, configId);
 
             if (value.featurePathName != null && value.placementModifierList != null) {
                 Identifier featureId = new Identifier(FarmersDelightMod.MOD_ID, value.featurePathName);
                 value.feature = Registry.register(BuiltinRegistries.PLACED_FEATURE, featureId,
                         new PlacedFeature(RegistryEntry.of(value.configuredFeature), List.of(value.placementModifierList)));
-                value.featureRegistryKey = RegistryKey.of(Registry.PLACED_FEATURE_KEY, featureId);
+                value.featureRegistryKey = RegistryKey.of(Registries.PLACED_FEATURE_KEY, featureId);
             }
         }
     }

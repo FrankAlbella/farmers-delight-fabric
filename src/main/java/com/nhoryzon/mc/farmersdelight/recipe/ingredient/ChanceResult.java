@@ -14,7 +14,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 
 /**
  * Credits to the Create team for the implementation of results with chances!

@@ -50,7 +50,8 @@ import net.minecraft.item.Items;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 import java.util.function.Supplier;
 
@@ -188,7 +189,7 @@ public enum BlocksRegistry {
     public static void registerAll() {
         for (BlocksRegistry value : values()) {
             Block block = value.get();
-            Registry.register(Registry.BLOCK, new Identifier(FarmersDelightMod.MOD_ID, value.pathName), block);
+            Registry.register(Registries.BLOCK, new Identifier(FarmersDelightMod.MOD_ID, value.pathName), block);
             if (isValidFlammableEntry(value.flammableRate)) {
                 FlammableBlockRegistry.getDefaultInstance().add(block, value.flammableRate);
             }
@@ -213,7 +214,7 @@ public enum BlocksRegistry {
     }
 
     public String getId() {
-        return Registry.BLOCK.getId(get()).toString();
+        return Registries.BLOCK.getId(get()).toString();
     }
 
 }

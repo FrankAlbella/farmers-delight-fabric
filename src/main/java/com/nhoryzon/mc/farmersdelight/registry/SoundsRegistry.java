@@ -3,7 +3,8 @@ package com.nhoryzon.mc.farmersdelight.registry;
 import com.nhoryzon.mc.farmersdelight.FarmersDelightMod;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public enum SoundsRegistry {
 
@@ -37,7 +38,7 @@ public enum SoundsRegistry {
 
     public static void registerAll() {
         for (SoundsRegistry value : values()) {
-            Registry.register(Registry.SOUND_EVENT, new Identifier(FarmersDelightMod.MOD_ID, value.pathName), value.soundEvent);
+            Registry.register(Registries.SOUND_EVENT, new Identifier(FarmersDelightMod.MOD_ID, value.pathName), value.soundEvent);
         }
     }
 

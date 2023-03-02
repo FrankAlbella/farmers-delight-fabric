@@ -29,7 +29,8 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -199,7 +200,7 @@ public class TomatoVineBlock extends CropBlock {
     }
 
     public void destroyAndPlaceRope(World world, BlockPos pos) {
-        Block configuredRopeBlock = Registry.BLOCK.get(new Identifier(FarmersDelightMod.CONFIG.getDefaultTomatoVineRope()));
+        Block configuredRopeBlock = Registries.BLOCK.get(new Identifier(FarmersDelightMod.CONFIG.getDefaultTomatoVineRope()));
         Block finalRopeBlock = configuredRopeBlock != Blocks.AIR ? configuredRopeBlock : BlocksRegistry.ROPE.get();
 
         world.setBlockState(pos, finalRopeBlock.getDefaultState());

@@ -6,7 +6,8 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public enum ExtendedScreenTypesRegistry {
 
@@ -26,7 +27,7 @@ public enum ExtendedScreenTypesRegistry {
 
     public static void registerAll() {
         for (ExtendedScreenTypesRegistry value : values()) {
-            Registry.register(Registry.SCREEN_HANDLER, new Identifier(FarmersDelightMod.MOD_ID, value.pathName), value.get());
+            Registry.register(Registries.SCREEN_HANDLER, new Identifier(FarmersDelightMod.MOD_ID, value.pathName), value.get());
         }
     }
 

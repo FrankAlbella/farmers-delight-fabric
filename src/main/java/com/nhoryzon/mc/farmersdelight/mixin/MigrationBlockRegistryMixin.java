@@ -3,8 +3,8 @@ package com.nhoryzon.mc.farmersdelight.mixin;
 import com.nhoryzon.mc.farmersdelight.FarmersDelightMod;
 import com.nhoryzon.mc.farmersdelight.registry.BlocksRegistry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.DefaultedRegistry;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.DefaultedRegistry;
+import net.minecraft.registry.Registries;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -32,7 +32,7 @@ public abstract class MigrationBlockRegistryMixin {
 
     @ModifyVariable(method = "get(Lnet/minecraft/util/Identifier;)Ljava/lang/Object;", at = @At(value = "HEAD"), argsOnly = true)
     private Identifier migrateGet(Identifier value) {
-        if ((Object)this == Registry.BLOCK) {
+        if ((Object)this == Registries.BLOCK) {
             String fullId = value.toString();
             if (MIGRATION_BLOCK.containsKey(fullId)) {
                 String newFullId = MIGRATION_BLOCK.get(fullId).get();

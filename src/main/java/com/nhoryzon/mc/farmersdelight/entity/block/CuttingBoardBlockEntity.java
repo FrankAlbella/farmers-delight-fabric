@@ -38,7 +38,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -175,7 +176,7 @@ public class CuttingBoardBlockEntity extends SyncedBlockEntity {
     }
 
     public void playProcessingSound(String soundEventID, Item tool, Item boardItem) {
-        SoundEvent sound = Registry.SOUND_EVENT.get(new Identifier(soundEventID));
+        SoundEvent sound = Registries.SOUND_EVENT.get(new Identifier(soundEventID));
 
         if (sound != null) {
             playSound(sound, 1.f, 1.f);

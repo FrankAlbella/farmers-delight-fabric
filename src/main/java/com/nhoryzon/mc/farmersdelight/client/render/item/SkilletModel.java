@@ -25,7 +25,8 @@ import net.minecraft.util.math.AffineTransformation;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -117,7 +118,7 @@ public class SkilletModel implements BakedModel {
         public CompositeBakedModel(ModelLoader loader, ItemStack ingredientStack, BakedModel skillet) {
             super(skillet);
 
-            Identifier ingredientLocation = Registry.ITEM.getId(ingredientStack.getItem());
+            Identifier ingredientLocation = Registries.ITEM.getId(ingredientStack.getItem());
             UnbakedModel ingredientUnbaked = loader.getOrLoadModel(new ModelIdentifier(ingredientLocation, "inventory"));
             ModelBakeSettings transform = new SimpleModelSettings(
                     new AffineTransformation(

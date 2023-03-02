@@ -22,8 +22,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.SignItem;
 import net.minecraft.item.ToolMaterials;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 
 import java.util.function.Supplier;
 
@@ -248,7 +249,7 @@ public enum ItemsRegistry {
 
     public static void registerAll() {
         for (ItemsRegistry value : values()) {
-            Registry.register(Registry.ITEM, new Identifier(FarmersDelightMod.MOD_ID, value.pathName), value.get());
+            Registry.register(Registries.ITEM, new Identifier(FarmersDelightMod.MOD_ID, value.pathName), value.get());
             if (value.burnTime != null && value.burnTime > 0) {
                 FuelRegistry.INSTANCE.add(value.get(), value.burnTime);
             }
@@ -263,7 +264,7 @@ public enum ItemsRegistry {
     }
 
     public String getId() {
-        return Registry.ITEM.getId(get()).toString();
+        return Registries.ITEM.getId(get()).toString();
     }
 
 }

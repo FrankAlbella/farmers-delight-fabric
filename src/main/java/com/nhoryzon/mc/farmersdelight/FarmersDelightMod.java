@@ -41,9 +41,10 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Position;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.World;
@@ -132,10 +133,10 @@ public class FarmersDelightMod implements ModInitializer {
     }
 
     protected void addToStructurePool(MinecraftServer server, Identifier poolIdentifier, Identifier nbtIdentifier, int weight) {
-        RegistryEntry<StructureProcessorList> emptyProcessorList = server.getRegistryManager().get(Registry.STRUCTURE_PROCESSOR_LIST_KEY)
-                .entryOf(RegistryKey.of(Registry.STRUCTURE_PROCESSOR_LIST_KEY, new Identifier("minecraft", "empty")));
+        RegistryEntry<StructureProcessorList> emptyProcessorList = server.getRegistryManager().get(Registries.STRUCTURE_PROCESSOR_LIST_KEY)
+                .entryOf(RegistryKey.of(Registries.STRUCTURE_PROCESSOR_LIST_KEY, new Identifier("minecraft", "empty")));
 
-        server.getRegistryManager().get(Registry.STRUCTURE_POOL_KEY).stream()
+        server.getRegistryManager().get(Registries.STRUCTURE_POOL_KEY).stream()
                 .filter(structurePoolReference -> structurePoolReference.getId().equals(poolIdentifier))
                 .findFirst().ifPresentOrElse(structurePool -> {
                     SinglePoolElement compostPilePool = StructurePoolElement.ofProcessedSingle(nbtIdentifier.toString(), emptyProcessorList)
