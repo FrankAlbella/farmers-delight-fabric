@@ -131,7 +131,11 @@ public class FeastBlock extends Block {
         ItemStack heldItem = player.getStackInHand(hand);
 
         if (servings > 0) {
-            if (!serving.getItem().hasRecipeRemainder() || heldItem.isItemEqualIgnoreDamage(new ItemStack(serving.getItem().getRecipeRemainder()))) {
+            // Since we can't ignore damange when comparing anymore
+            // create a new object and make the damage the same as the held item
+            ItemStack compare = new ItemStack(serving.getItem().getRecipeRemainder());
+            compare.setDamage(heldItem.getDamage());
+            if (!serving.getItem().hasRecipeRemainder() || heldItem.isItemEqual(compare)) {
                 world.setBlockState(pos, state.with(getServingsProperty(), servings - 1), BlockStateUtils.DEFAULT);
                 if (!player.getAbilities().creativeMode && serving.getItem().hasRecipeRemainder()) {
                     heldItem.decrement(1);
