@@ -13,7 +13,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
+
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 import java.util.Random;
@@ -34,7 +37,7 @@ public class SkilletBlockEntityRenderer implements BlockEntityRenderer<SkilletBl
         int posLong = (int) entity.getPos().asLong();
 
         ItemStack stack = inventory.getStack(0);
-        int seed = stack.isEmpty() ? 187 : Registry.ITEM.getRawId(stack.getItem()) + stack.getDamage();
+        int seed = stack.isEmpty() ? 187 : Registries.ITEM.getRawId(stack.getItem()) + stack.getDamage();
         this.random.setSeed(seed);
 
         if (!stack.isEmpty()) {
@@ -48,8 +51,8 @@ public class SkilletBlockEntityRenderer implements BlockEntityRenderer<SkilletBl
                 matrices.translate(.5d + xOffset, .1d + .03 * (i + 1), .5d + zOffset);
 
                 float degrees = -direction.asRotation();
-                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(degrees));
-                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90.f));
+                matrices.multiply(new Quaternionf(0, 1, 0, 0).rotateY((float)Math.toDegrees(degrees)));
+                matrices.multiply(new Quaternionf(1, 0, 0, 0).rotateX((float)Math.toDegrees(90.f)));
 
                 // Resize the items
                 matrices.scale(.5f, .5f, .5f);

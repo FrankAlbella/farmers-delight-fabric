@@ -23,7 +23,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.AffineTransformation;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
+
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -122,9 +124,9 @@ public class SkilletModel implements BakedModel {
             UnbakedModel ingredientUnbaked = loader.getOrLoadModel(new ModelIdentifier(ingredientLocation, "inventory"));
             ModelBakeSettings transform = new SimpleModelSettings(
                     new AffineTransformation(
-                            new Vec3f(.0f, -.4f, .0f),
-                            Vec3f.POSITIVE_X.getDegreesQuaternion(270),
-                            new Vec3f(.625f, .625f, .625f), null));
+                            new Vector3f(.0f, -.4f, .0f),
+                            new Quaternionf(1, 0, 0, 0).rotateX(270),
+                            new Vector3f(.625f, .625f, .625f), null));
             Identifier name = new Identifier(FarmersDelightMod.MOD_ID, "skillet_with_" + ingredientLocation.toString().replace(':', '_'));
 
             BakedModel ingredientBaked;
