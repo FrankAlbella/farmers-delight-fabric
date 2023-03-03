@@ -171,7 +171,7 @@ public class TomatoVineBlock extends CropBlock {
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world,
             BlockPos pos, BlockPos neighborPos) {
         if (!state.canPlaceAt(world, pos)) {
-            world.createAndScheduleBlockTick(pos, this, 1);
+            world.scheduleBlockTick(pos, this, 1);
         }
 
         return state;
