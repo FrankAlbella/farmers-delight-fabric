@@ -16,6 +16,8 @@ import com.nhoryzon.mc.farmersdelight.item.RopeItem;
 import com.nhoryzon.mc.farmersdelight.item.RottenTomatoItem;
 import com.nhoryzon.mc.farmersdelight.item.SkilletItem;
 import com.nhoryzon.mc.farmersdelight.item.enumeration.Foods;
+
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
@@ -250,6 +252,7 @@ public enum ItemsRegistry {
     public static void registerAll() {
         for (ItemsRegistry value : values()) {
             Registry.register(Registries.ITEM, new Identifier(FarmersDelightMod.MOD_ID, value.pathName), value.get());
+            ItemGroupEvents.modifyEntriesEvent(FarmersDelightMod.ITEM_GROUP).register(entries -> entries.add(value.get()));
             if (value.burnTime != null && value.burnTime > 0) {
                 FuelRegistry.INSTANCE.add(value.get(), value.burnTime);
             }
